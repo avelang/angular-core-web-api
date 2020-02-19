@@ -26,6 +26,11 @@ namespace angular_core_web_api
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,6 +75,8 @@ namespace angular_core_web_api
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+
+            app.UseCors(options => options.AllowAnyOrigin());
         }
     }
 }
